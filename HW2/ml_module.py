@@ -15,9 +15,6 @@ def preprocess_data(df, target_column):
     x = df.drop(columns=[target_column])
     y = df[target_column]
 
-    if target_column not in df.columns:
-        raise ValueError(f"Целевая переменная '{target_column}' не найдена в данных")
-
     numeric_features = ['CustomerID', 'Age', 'Annual Income (k$)', 'Spending Score (1-100)']
     categorical_features = ['Genre']
     numeric_transformer = StandardScaler()
@@ -41,10 +38,6 @@ def train_model(x, y):
 
 
 def predict(model, x):
-
-    if model is None:
-        raise ValueError("Модель не обучена. Сначала выполните train_model()")
-
     return model.predict(x)
 
 
